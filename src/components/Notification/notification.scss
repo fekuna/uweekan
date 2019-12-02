@@ -1,0 +1,15 @@
+.notifContainer {
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: .75rem;
+    background-color: red;
+    position: absolute;
+    top: -.8rem;
+    right: -1rem;
+    display: flex;
+
+    .notif {
+        margin: auto;
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,28 @@
+.shopContainer {
+    background-color: white;
+    width: 100%;
+    padding: 7rem;
+    color: black;
+    font-size: 2rem;
+    height: 100vh;
+
+    .headerElements {
+        display: flex;
+        justify-content: space-between;
+
+        .title {
+            margin-left: 4rem;
+        }
+    }
+
+    .items {
+        display: flex;
+        flex-wrap: wrap;
+        z-index: 1;
+    }
+
+    .item {
+        padding: 4rem;
+        margin-bottom: -11rem;
+    }
+}

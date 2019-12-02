@@ -1,0 +1,11 @@
+.profileContainer {
+    margin-left: 5rem;
+	cursor: pointer;
+	position: relative;
+
+	.profileImage {
+		width: 3rem;
+		height: 3rem;
+		border-radius: 1.5rem;
+	}
+}

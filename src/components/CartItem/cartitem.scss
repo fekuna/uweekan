@@ -1,0 +1,42 @@
+.itemContainer {
+	width: 100%;
+	display: flex;
+	// margin: 1.5rem;
+	margin-bottom: 1rem;
+	
+
+	.itemDetailContainer {
+		display: flex;
+		flex-direction: column;
+		width: 7rem;
+
+		.itemDetail {
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+
+	.itemDetail * {
+		color: black;
+	}
+
+	.itemImage {
+		width: 5rem;
+		height: 5rem;
+		margin-right: 1.5rem;
+	}
+
+	.itemName {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		font-weight: 700;
+		color: black;
+	}
+
+	.itemQty {
+		display: flex;
+		align-items: flex-end;
+		margin-bottom: 1.5rem;
+		color: black;
+	}
+}

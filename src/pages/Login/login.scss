@@ -1,0 +1,83 @@
+.login {
+	padding: 7rem;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	display: flex;
+	margin: auto;
+
+	.formContainer {
+		border-radius: .8rem;
+		width: 45rem;
+		height: 55rem;
+		background-color: #fff;
+		padding: 4rem;
+		box-shadow: 1px .8px 3px #000;
+		
+
+		.optionContainer {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			position: relative;
+			margin-bottom: 6rem;
+
+			.sellerButton {
+				position: absolute;
+				top: 0;
+				right: 1.5rem;
+			}
+
+			.active {
+				background-color: #e2e2e2;
+				color: black;
+				border-radius: 3rem;
+				z-index: 999;
+
+				.optionText {
+					color: black;
+				}
+			}
+
+			.buyerButton {
+				position: absolute;
+				top: 0;
+				left: 3rem;
+			}
+		}
+
+		.textContainer {
+
+			h2 {
+				font-size: 2.5rem;
+			}
+
+			span {
+				font-size: 1.2rem;
+			}
+		}
+
+		.formFooter {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.fPassword-link {
+				&:focus,
+				&:hover,
+				&:visited,
+				&:link,
+				&:active {
+					text-decoration: none;
+					font-size: 1.5rem;
+					color: rgb(54, 39, 39);
+					font-weight: 600;
+				}
+
+				&:hover {
+					transform: scale(1.02);
+				}
+			}
+		}
+	}
+}

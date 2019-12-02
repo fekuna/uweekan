@@ -1,0 +1,39 @@
+.card {
+	width: 20rem;
+	height: 25rem;
+	// border: 1px solid #000;
+
+	.imageContainer {
+		background-size: cover;
+
+
+		.cardImage {
+			border: 1px solid #000;
+			width: 100%;
+			cursor: pointer;
+			border-radius: 1.5rem;
+		}
+	}
+
+	.cardTitle {
+		font-weight: 700;
+        font-size: 2rem;
+        cursor: pointer;
+        display: inline-block;
+	}
+
+	.cardPrice {
+		font-weight: 300;
+		font-size: 1.5rem;
+    }
+    
+    .cardDetailContainer {
+        display: flex;
+        justify-content: space-between;
+        
+        .buttonContainer {
+            display: flex;
+            align-items: center;
+        }
+    }
+}

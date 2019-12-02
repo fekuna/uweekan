@@ -1,0 +1,31 @@
+.customButton {
+	text-transform: uppercase;
+	background-color: #000;
+	color: white;
+	border: none;
+	width: 5rem;
+	height: 3rem;
+	font-weight: 700;
+	cursor: pointer;
+
+	&:hover {
+		transform: scale(1.1);
+	}
+
+	&:active {
+		transform: scale(1);
+	}
+}
+
+
+.loginButton {
+	background-color: green;
+	width: 10rem;
+	border: 1px solid #fff;
+	box-shadow: 1px #fff;
+}
+
+.registerButton {
+	background-color: black;
+	width: 10rem;
+}

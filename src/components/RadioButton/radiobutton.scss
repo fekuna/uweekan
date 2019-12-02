@@ -1,0 +1,44 @@
+.radioContainer {
+	align-items: center;
+	display: flex;
+
+	.radioButton {
+		visibility: hidden;
+	}
+
+	.radioCircle {
+		width: 1.8rem;
+		height: 1.8rem;
+		border-radius: .9rem;
+		background-color: white;
+		margin-right: .8rem;
+		border: 2px solid #000;
+		position: relative;
+
+		&::after {
+			content: "";
+			width: 1.2rem;
+			height: 1.2rem;
+			border-radius: .6rem;
+			background-color: black;
+			margin-right: .8rem;
+			position: absolute;
+			top: .1rem;
+			left: .1rem;
+			visibility: hidden;
+		}
+	}
+
+	.radioButton:checked .radioCircle::after {
+		visibility: visible;
+	}
+
+	.radioLabel {
+		font-size: 2rem;
+		cursor: pointer;
+	}
+
+	.radioButton:checked ~ .radioCircle::after {
+		visibility: visible;
+	}
+}

@@ -1,0 +1,13 @@
+.topUpContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+    .topUp {
+        border-radius: 1.5rem;
+        min-width: 50rem;
+        min-height: 7rem;
+        background-color: white;
+        padding: 3rem;
+    }
+}

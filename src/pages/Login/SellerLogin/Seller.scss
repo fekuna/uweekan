@@ -1,0 +1,45 @@
+.textContainer {
+	h2 {
+		font-size: 2.5rem;
+	}
+
+	span {
+		font-size: 1.2rem;
+	}
+}
+
+.formFooter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 3rem;
+
+	.fPassword-link {
+		&:focus,
+		&:hover,
+		&:visited,
+		&:link,
+		&:active {
+			text-decoration: none;
+			font-size: 1.5rem;
+			color: rgb(54, 39, 39);
+			font-weight: 600;
+		}
+
+		&:hover {
+			transform: scale(1.02);
+		}
+	}
+}
+
+.registerOption {
+	margin-top: 5rem;
+	height: 6rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.5rem;
+	color: rgb(54, 39, 39);
+	font-weight: 600;
+}
