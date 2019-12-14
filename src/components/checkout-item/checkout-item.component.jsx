@@ -7,6 +7,8 @@ import {
 	removeItemCustom,
 } from '../../redux/cart/cart.actions';
 
+import { sellerURL, seller } from '../../redux/port'
+
 import './checkout-item.styles.scss';
 
 const CheckoutItem = ({
@@ -25,7 +27,7 @@ const CheckoutItem = ({
 	return (
 		<div className='checkout-item'>
 			<div className='image-container'>
-				<img src={product_image} alt='item' />
+				<img src={`http://${sellerURL}:${seller}${product_image}`} alt='item' />
 			</div>
 			<span className='name'>{product_name}</span>
 			<span className='quantity'>
