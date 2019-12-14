@@ -11,6 +11,7 @@ import Register from './pages/Register/Register';
 import CheckOut from './pages/checkout/checkout.component';
 import AddProduct from './pages/AddProduct/AddProduct';
 import TopUp from './pages/TopUp/TopUp';
+import ProductDetail from './pages/ProductDetail/ProductDetail';
 
 import { onCheckLoginUser } from './redux/auth/auth.actions';
 
@@ -31,9 +32,22 @@ function App(props) {
 						component={Register}
 						path='/register'
 					/>
-					<Route exact component={CheckOut} path='/checkout' />
-					<Route exact component={AddProduct} path='/addproduct' />
+					<Route
+						exact
+						component={CheckOut}
+						path='/checkout'
+					/>
+					<Route
+						exact
+						component={AddProduct}
+						path='/addproduct'
+					/>
 					<Route exact component={TopUp} path='/topup' />
+					<Route
+						exact
+						component={ProductDetail}
+						path='/productdetail'
+					/>
 				</Switch>
 			</div>
 		</Fragment>

@@ -1,22 +1,62 @@
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
 import coinTypes from './coin.types';
 
-export const coinTopUp = (nominal) => (dispatch) => {
+import { buyer, buyerURL, coin, coinURL } from '../port';
+
+export const coinTopUp = (nominal, history) => (dispatch) => {
 	localStorage.getItem('userId');
 	axios
-		.get(`http://127.0.0.1:8000/api/customer/`)
+		.get(`http://${buyerURL}:${buyer}/api/customer/`)
 		.then((res) => {
-            const username = res.data.data.username;
-            const dataTopUp ={
-                username_destination: username,
-                topup_balance: nominal
-            }
-            console.log(dataTopUp, 'dataTopUp');
-            return axios.post(`http://127.0.0.1:8000/api/coin/topup`, dataTopUp)
-        })
-        .then(res => {
-            console.log('topup nich', res);
-        })
-		.catch((err) => { console.log(err);});
+			const username = res.data.data.username;
+			const dataTopUp = {
+				username_destination: username,
+				topup_balance: nominal,
+			};
+			return axios.post(
+				`http://${coinURL}:${coin}/api/coin/topup`,
+				dataTopUp,
+			);
+		})
+		.then((res) => {
+			console.log('topup nich', res);
+			history.push('/')
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};
+
+export const getCoin = () => (dispatch) => {
+	const token = localStorage.getItem('jwtToken');
+
+	axios
+		.get(`http://${buyerURL}:${buyer}/api/customer/`, {
+			headers: {
+				Authorization: 'Bearer ' + token,
+			},
+		})
+		.then((res) => {
+			console.log('getcoin username');
+			const username = res.data.data.username;
+			return axios.get(
+				`http://${coinURL}:${coin}/api/coin/balance?username=${username}`,
+				{
+					headers: {
+						Authorization: 'Bearer ' + token,
+					},
+				},
+			);
+		})
+		.then((res) => {
+			console.log('getcoin', res.data.data[0].balance);
+			const currentCoin = res.data.data[0].balance;
+			dispatch({
+				type: coinTypes.GET_COIN,
+				payload: currentCoin,
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 };

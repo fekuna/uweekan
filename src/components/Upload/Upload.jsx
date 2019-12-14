@@ -4,7 +4,7 @@ import { ReactComponent as Icon } from '../../assets/upload-solid.svg';
 
 import './upload.scss';
 
-const Upload = ({ fileUploadValue, ...props }) => {
+const Upload = ({ fileName, ...props }) => {
 	const fileUpload = useRef(null)
 
 	const handleFileUploadClick = () => {
@@ -32,7 +32,7 @@ const Upload = ({ fileUploadValue, ...props }) => {
 				</div>
 			</div>
 			<label class='inputLabel' htmlFor='imageUpload'>
-				{fileUploadValue}
+				{fileName}
 			</label>
 		</div>
 	);

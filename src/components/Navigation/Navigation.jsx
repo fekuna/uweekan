@@ -6,9 +6,10 @@ import './navigation.scss';
 import CartIcon from '../CartIcon/CartIcon';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
 import Button from '../CustomButton/CustomButton';
+import Coin from '../TopUpIcon/TopUpIcon';
 
 const Navigation = (props) => {
-	const {isAuthenticated} = props
+	const { isAuthenticated } = props;
 
 	return (
 		<div className='navContainer'>
@@ -16,11 +17,18 @@ const Navigation = (props) => {
 				<Link className='logo-container'>Logo</Link>
 
 				<div className='options'>
-					<Link className='option' to="/">SHOP</Link>
-					<Link className='option' to="/contact">Contact us</Link>
+					<Link className='option' to='/'>
+						SHOP
+					</Link>
+					<Link className='option' to='/contact'>
+						Contact us
+					</Link>
 					<CartIcon />
 					{isAuthenticated ? (
-						<ProfileMenu />
+						<Fragment>
+							<Coin />
+							<ProfileMenu />
+						</Fragment>
 					) : (
 						<Fragment>
 							<Button
@@ -47,8 +55,8 @@ const Navigation = (props) => {
 	);
 };
 
-const mapStateToProps = state => ({
-	isAuthenticated: state.auth.isAuthenticated
-})
+const mapStateToProps = (state) => ({
+	isAuthenticated: state.auth.isAuthenticated,
+});
 
 export default connect(mapStateToProps)(withRouter(Navigation));

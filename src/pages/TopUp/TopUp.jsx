@@ -19,7 +19,7 @@ class TopUp extends Component {
 		this.setState({
 			[name]: value,
 		});
-		console.log(this.state)
+		console.log(this.state);
 	};
 
 	render() {
@@ -39,6 +39,7 @@ class TopUp extends Component {
 							onClick={() =>
 								this.props.onTopUp(
 									this.state.nominal,
+									this.props.history,
 								)}
 							style={{ width: '8rem' }}
 						>
@@ -52,7 +53,8 @@ class TopUp extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-	onTopUp: (nominal) => dispatch(coinTopUp(nominal)),
+	onTopUp: (nominal, history) =>
+		dispatch(coinTopUp(nominal, history)),
 });
 
 export default connect(null, mapDispatchToProps)(TopUp);

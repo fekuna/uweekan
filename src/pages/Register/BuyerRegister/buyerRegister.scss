@@ -1,4 +1,4 @@
-.login {
+.register {
 	padding: 7rem;
 	justify-content: center;
 	align-items: center;
@@ -9,7 +9,6 @@
 	.formContainer {
 		border-radius: .8rem;
 		width: 45rem;
-		height: 55rem;
 		background-color: #fff;
 		padding: 4rem;
 		box-shadow: 1px .8px 3px #000;
@@ -55,12 +54,18 @@
 			span {
 				font-size: 1.2rem;
 			}
-		}
+        }
+
+        .radioOptions {
+			display: flex;
+			justify-content: space-around;
+			margin-bottom: 2rem;
+        }
 
 		.formFooter {
 			display: flex;
-			justify-content: space-between;
-			align-items: center;
+			justify-content: flex-end;
+            align-items: center;
 
 			.fPassword-link {
 				&:focus,

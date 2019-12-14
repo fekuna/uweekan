@@ -1,7 +1,18 @@
 import axios from 'axios';
 import { setAuthToken } from './auth.utils';
-import { clearAllItemsFromCart } from '../cart/cart.actions';
+import {
+	clearAllItemsFromCart,
+	getCartItems,
+} from '../cart/cart.actions';
 import jwtDecode from 'jwt-decode';
+import {
+	buyer,
+	buyerURL,
+	seller,
+	sellerURL,
+	integrated,
+	integratedURL,
+} from '../port';
 
 import AuthTypes from './auth.types';
 
@@ -10,15 +21,40 @@ import AuthTypes from './auth.types';
 // Register User
 export const registerUser = (data, history) => (dispatch) => {
 	axios
-		.post('http://127.0.0.1:8000/api/customer/register', data)
+		.post(
+			`http://${integratedURL}:${integrated}/api/customer/register`,
+			data,
+		)
 		.then((res) => history.push('/login'))
-		.catch((err) => console.log(err));
+		.catch((err) => {
+			// const error = Object.values(err.response.data.message);
+			// alert(error);
+			// console.log(err.response);
+		});
+};
+
+// Register User
+export const registerSeller = (data, history) => (dispatch) => {
+	axios
+		.post(
+			`http://${integratedURL}:${integrated}/api/seller/register`,
+			data,
+		)
+		.then((res) => history.push('/login'))
+		.catch((err) => {
+			const error = Object.values(err.response.data.message);
+			alert(error);
+			console.log(err.response, 'ini error');
+		});
 };
 
 // Login Buyr
 export const buyerLogin = (userData, history) => (dispatch) => {
 	axios
-		.post('http://127.0.0.1:8000/api/customer/login', userData)
+		.post(
+			`http://${buyerURL}:${buyer}/api/customer/login`,
+			userData,
+		)
 		.then((res) => {
 			// console.log('data nich', res.data);
 			// Save to localStorage
@@ -30,17 +66,21 @@ export const buyerLogin = (userData, history) => (dispatch) => {
 			// Set User id to LocalStorage
 			localStorage.setItem('userId', decoded.sub);
 			// Set Scope user
-			localStorage.setItem('role', decoded.scopes[0])
+			localStorage.setItem('role', decoded.scopes[0]);
 			// Set Token to Auth Header
 			setAuthToken(token);
 			dispatch(setCurrentUser(decoded.sub));
-			history.push('/')
+			history.push('/');
+			dispatch(getCartItems());
 		});
 };
 // Login Seller
 export const sellerLogin = (userData, history) => (dispatch) => {
 	axios
-		.post('http://127.0.0.1:8000/api/seller/login', userData)
+		.post(
+			`http://${sellerURL}:${seller}/api/seller/login`,
+			userData,
+		)
 		.then((res) => {
 			console.log('hello');
 			// console.log('data nich', res.data);
@@ -53,24 +93,23 @@ export const sellerLogin = (userData, history) => (dispatch) => {
 			// Set User id to LocalStorage
 			localStorage.setItem('userId', decoded.sub);
 			// Set Scope user
-			localStorage.setItem('role', decoded.scopes[0])
+			localStorage.setItem('role', decoded.scopes[0]);
 			// Set Token to Auth Header
 			setAuthToken(token);
 			dispatch(setCurrentUser(decoded.sub));
-			history.push('/')
+			history.push('/');
 		});
 };
 
-export const onCheckLoginUser = () => dispatch => {
-	const token = localStorage.getItem('jwtToken')
-	const userId = localStorage.getItem('userId')
+export const onCheckLoginUser = () => (dispatch) => {
+	const token = localStorage.getItem('jwtToken');
+	const userId = localStorage.getItem('userId');
 
-	if(token) {
-		setAuthToken(token)
-		dispatch(setCurrentUser(userId))
+	if (token) {
+		setAuthToken(token);
+		dispatch(setCurrentUser(userId));
 	}
-
-}
+};
 
 // Log user out
 export const logoutUser = () => (dispatch) => {

@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-import jwtDecode from 'jwt-decode';
+import { sellerURL, seller } from '../port'
 
 import ShopActionTypes from './shop.types';
 
 export const getItems = () => (dispatch) => {
 	axios
-		.get('/api/seller/product')
+		.get(`http://${sellerURL}:${seller}/api/seller/product`)
 		.then((res) => {
+			console.log(res.data.data);
 			dispatch({
 				type: ShopActionTypes.GET_ITEMS,
 				payload: res.data.data,
@@ -16,18 +17,20 @@ export const getItems = () => (dispatch) => {
 		.catch((err) => console.log('eeh', err));
 };
 
-
-export const addItem = (item, history) => dispatch => {
-	const token = localStorage.getItem('jwtToken')
-	axios.post('http://127.0.0.1:8000/api/seller/product', item, {
-		headers: {
-			Authorization: 'Bearer ' + token,
-		},
-	})
-	.then((res) => {
-		console.log('addProduct', res);
-		history.push('/')
-	}).catch((err) => {
-		console.log(err.message, 'kocak');
-	});
-}
+export const addItem = (item, history) => (dispatch) => {
+	const token = localStorage.getItem('jwtToken');
+	axios
+		.post(`http://${sellerURL}:${seller}/api/seller/product`, item, {
+			headers: {
+				Authorization: 'Bearer ' + token,
+				'Content-Type': 'multipart/form-data',
+			},
+		})
+		.then((res) => {
+			console.log('addProduct', res);
+			history.push('/');
+		})
+		.catch((err) => {
+			console.log(err.message, 'kocak');
+		});
+};

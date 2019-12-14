@@ -19,6 +19,11 @@ const ProfileDropdown = (props) => {
 					style={{ color: 'black' }}
 				/>
 				<ProfileDropdownItem
+					onClick={() => props.history.push('/transaksi')}
+					name='Transactions'
+					style={{ color: 'black' }}
+				/>
+				<ProfileDropdownItem
 					onClick={() => props.history.push('/setting')}
 					name='Setting'
 				/>

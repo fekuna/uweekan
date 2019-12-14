@@ -1,7 +1,7 @@
 import axios from 'axios';
 import CartActionTypes from './cart.types';
 
-import { buyer } from '../port';
+import { buyer, buyerURL, seller, integrated, integratedURL } from '../port';
 
 export const toggleCartHidden = () => ({
 	type: CartActionTypes.TOGGLE_CART_HIDDEN,
@@ -10,7 +10,7 @@ export const toggleCartHidden = () => ({
 export const getCartItems = () => (dispatch) => {
 	const token = localStorage.getItem('jwtToken');
 	return axios
-		.get(`http://127.0.0.1:${buyer}/api/customer/cart`, {
+		.get(`http://${buyerURL}:${buyer}/api/customer/cart`, {
 			headers: {
 				Authorization: 'Bearer ' + token,
 			},
@@ -64,7 +64,15 @@ export const addItem = (item) => (dispatch) => {
 	};
 
 	axios
-		.post(`http://127.0.0.1:${buyer}/api/customer/cart`, dataToCart)
+		.post(
+			`http://${buyerURL}:${buyer}/api/customer/cart`,
+			dataToCart,
+			{
+				headers: {
+					Authorization: 'Bearer ' + token
+				},
+			},
+		)
 		.then((res) => {
 			console.log('ini respon', res);
 			dispatch({
@@ -91,7 +99,7 @@ export const removeItemCustom = (item, removeNum) => (dispatch) => {
 	};
 
 	axios
-		.put(`http://127.0.0.1:${buyer}/api/customer/cart`, newData)
+		.put(`http://${buyerURL}:${buyer}/api/customer/cart`, newData)
 		.then((res) => {
 			console.log('sukses put', res);
 			dispatch(removeItem(item));
@@ -103,10 +111,10 @@ export const removeItemCustom = (item, removeNum) => (dispatch) => {
 
 export const purchaseProducts = () => (dispatch) => {
 	axios
-		.post(`http://127.0.0.1:${buyer}/api/customer/purchase`)
+		.post(`http://${integratedURL}:${integrated}/api/customer/purchase`)
 		.then((res) => {
-			alert(res.data.message)
-			dispatch(clearAllItemsFromCart())
+			alert(res.data.message);
+			dispatch(clearAllItemsFromCart());
 		})
 		.catch((err) => {
 			console.log(err);

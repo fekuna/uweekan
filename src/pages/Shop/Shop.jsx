@@ -43,6 +43,7 @@ const Shop = (props) => {
 							productImage={item.product_image}
 							productPrice={item.product_price}
 							productName={item.product_name}
+							productDescription={item.product_desc}
 						/>
 					</div>
 				))}
