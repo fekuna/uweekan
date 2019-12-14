@@ -46,7 +46,7 @@ export const getCartItems = () => (dispatch) => {
 			return data;
 		})
 		.catch((err) => {
-			console.log(err);
+			alert(err.response.data.message);
 		});
 };
 
@@ -81,7 +81,7 @@ export const addItem = (item) => (dispatch) => {
 			});
 		})
 		.catch((err) => {
-			console.log(err);
+			alert(err.response.data.message);
 		});
 
 	// return {
@@ -117,7 +117,7 @@ export const purchaseProducts = () => (dispatch) => {
 			dispatch(clearAllItemsFromCart());
 		})
 		.catch((err) => {
-			console.log(err);
+			alert(err.response.data.message);
 		});
 };
 
