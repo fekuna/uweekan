@@ -46,7 +46,7 @@ export const getCartItems = () => (dispatch) => {
 			return data;
 		})
 		.catch((err) => {
-			alert(err.response.data.message);
+			console.log(err.response.data.message);
 		});
 };
 
