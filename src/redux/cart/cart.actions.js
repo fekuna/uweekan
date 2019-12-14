@@ -105,7 +105,7 @@ export const removeItemCustom = (item, removeNum) => (dispatch) => {
 			dispatch(removeItem(item));
 		})
 		.catch((err) => {
-			console.log(err);
+			alert(err.response.data.message)
 		});
 };
 
