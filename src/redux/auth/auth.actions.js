@@ -29,7 +29,7 @@ export const registerUser = (data, history) => (dispatch) => {
 		.catch((err) => {
 			// const error = Object.values(err.response.data.message);
 			// alert(error);
-			// console.log(err.response);
+			console.log(err.response);
 		});
 };
 
